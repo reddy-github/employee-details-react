@@ -1,23 +1,93 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState,  } from "react";
+import BootstrapTable from "react-bootstrap-table-next";
+
+import filterFactory,{ textFilter } from "react-bootstrap-table2-filter";
 function App() {
+  const [data] = useState([
+    {
+      "id": 1,
+      "name": "dimpu",
+      "birth": "1996", 
+      "designation": "developer",
+
+    },
+    {
+      "id": 2,
+      "name": "abhi",
+      "birth": "1997", 
+      "designation": "developer",
+    },
+    {
+      "id": 3,
+      "name": "Alice",
+      "birth": "1998", 
+      "designation": "developer",
+    },
+    {
+      "id": 4,
+      "name": "sai",
+      "birth": "1998", 
+      "designation": "developer",
+    },
+    {
+      "id": 5,
+      "name": "charan",
+      "birth": "1998", 
+      "designation": "developer",
+    },
+    
+    
+  ]);
+ 
+  
+  const columns = [
+    {
+      dataField: "id",
+      text: "Employee id",
+      sort: true,
+      
+      
+    },
+    
+     
+    {
+      dataField: "name",
+      text: "EmployeName",
+      sort: true,
+      
+      filter: textFilter(),
+    },
+    {
+      dataField: "birth",
+      text: "Birth",
+      sort: true,
+      
+      filter: textFilter(),
+    },
+    {
+      dataField: "designation",
+      text: "Designation",
+      sort: true,
+      
+    
+    },
+
+ 
+  ];
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BootstrapTable
+        keyField="id"
+        data={data}
+        columns={columns}
+        striped
+        hover
+        condensed
+        
+        filter={filterFactory()}
+      />
     </div>
   );
 }
